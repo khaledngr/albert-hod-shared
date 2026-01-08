@@ -22,13 +22,15 @@ colorama==0.4.6
 undetected-chromedriver==3.5.5
 
 # Exploratory Data Analysis
-#numpy==1.26.4  # before running pip install -r requirements.txt, run pip install numpy==1.26.4 (best practice)
+numpy==1.26.4
 pandas==2.2.3
 scipy==1.15.2
-#matplotlib==3.7.4
+matplotlib==3.7.4
 seaborn==0.13.2
 plotly==5.18.0
 wordcloud==1.9.4
+Pillow==10.4.0
+tqdm==4.66.5
 
 
 # Data science

@@ -1,0 +1,22 @@
+services:
+  jupyter:
+    build: .
+    container_name: albert-hod-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      # Mount notebooks directory so changes persist
+      - ./notebooks:/workspace/notebooks
+      # Mount data directory so data is accessible
+      - ./data:/workspace/data
+      # Mount SQL directory
+      - ./sql:/workspace/sql
+      # Mount root for any other files
+      - .:/workspace
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    stdin_open: true
+    tty: true
+    # Keep container running
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='' --notebook-dir=/workspace
+

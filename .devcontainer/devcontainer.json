@@ -1,0 +1,51 @@
+{
+	"name": "Albert HOD Python Environment",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"workspaceFolder": "/workspace",
+	"postCreateCommand": "echo 'Container ready! You can now use VS Code/Cursor to run notebooks.'",
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.jupyter-renderers"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": false,
+				"python.formatting.provider": "none",
+				"jupyter.jupyterServerType": "local",
+				"files.watcherExclude": {
+					"**/.git/objects/**": true,
+					"**/.git/subtree-cache/**": true,
+					"**/__pycache__/**": true,
+					"**/.ipynb_checkpoints/**": true
+				}
+			}
+		}
+	},
+	
+	// Forward port 8888 for JupyterLab (if students want to use it)
+	"forwardPorts": [8888],
+	"portsAttributes": {
+		"8888": {
+			"label": "JupyterLab",
+			"onAutoForward": "notify"
+		}
+	},
+	
+	// Mount the workspace as a volume so changes persist
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/workspace,type=bind"
+	],
+	
+	// Use the same user as the Dockerfile
+	"remoteUser": "root"
+}
